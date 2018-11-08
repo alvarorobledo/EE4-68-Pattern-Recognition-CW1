@@ -53,14 +53,16 @@ u = np.matmul(A, v_low)/min(A.shape)
 from sklearn.preprocessing import normalize
 u = normalize(u, axis=0)
 
-topEigenvectors = pickTopEigenvectors(u.T, 389)
+
+topEigenvectors = pickTopEigenvectors(u.T, 300)
+
 
 w_0=[]
 sum_terms=[]
 for u_i in topEigenvectors:
-    w_0.append(np.dot(A.T[5], u_i))
+    w_0.append(np.dot(A.T[0], u_i))
     sum_terms.append(w_0[-1]*u_i)
 phi_reconstructed = sum(sum_terms)
 face_reconstructed = phi_reconstructed + avgFace
 plot_face(face_reconstructed)
-plot_face(X_train[5])
+plot_face(X_train[0])
